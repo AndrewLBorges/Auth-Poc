@@ -3,6 +3,9 @@ import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './domain/users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PassportModule } from '@nestjs/passport';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './core/guards/roles.guard';
 
 @Module({
   imports: [
@@ -17,8 +20,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     SharedModule,
     UsersModule,
+    PassportModule.register({ session: true }),
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+  ],
 })
 export class AppModule {}

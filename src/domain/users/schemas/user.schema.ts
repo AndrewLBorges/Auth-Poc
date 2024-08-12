@@ -5,6 +5,7 @@ import { Role } from 'src/core/enums/role.enum';
 export class User {
   @Prop({
     required: true,
+    unique: true,
   })
   email: string;
 
